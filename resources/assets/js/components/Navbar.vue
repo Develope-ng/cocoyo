@@ -126,7 +126,7 @@
             getSocketNotification() {
                 var echo = new Echo({
                     broadcaster: 'socket.io',
-                    host: '119.23.43.30:6001',
+                    host: 'http://119.23.43.30:6001',
                     auth: {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest',
