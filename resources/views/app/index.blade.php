@@ -15,6 +15,7 @@
     <!-- Icon -->
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 <body>
 <div id="app"></div>
 

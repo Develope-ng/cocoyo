@@ -8,10 +8,12 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Notifications\UserRegisterVerficationCode;
 use App\Traits\PassportToken;
+use GuzzleHttp\Client;
 use function GuzzleHttp\Psr7\uri_for;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use \Auth;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthorizationsController extends Controller
@@ -130,13 +132,24 @@ class AuthorizationsController extends Controller
     protected function handleResponse($user, $oauthUser, $socialMapping)
     {
         if (! $user) {
+            // 创建目录 拉取远程头像
+            $path = 'qq/' . date('Y') . date('m') . '/' . date('d');
+            $filename = str_random();
+            $suffix = '.jpeg';
+            Storage::disk(config('filesystems.default'))->makeDirectory($path);
+
+            // 拉取远程头像
+            $client = new Client(['verify' => false]);
+
+            $client->get($oauthUser->getAvatar(), ['save_to' => storage_path('app/public/' . $path . '/' . $filename . $suffix)]);
+
             return $this->respond([
                 'data' => [
                     'code' => 1001,
                     'social_user' => [ //未注册
                         $socialMapping => $oauthUser->getId(),
                         'name' => $oauthUser->getNickname(),
-                        'avatar' => $oauthUser->getAvatar()
+                        'avatar' => '/storage/' . $path . '/' . $filename . $suffix
                     ]
                 ]
             ]);

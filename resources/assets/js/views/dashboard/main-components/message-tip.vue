@@ -20,10 +20,11 @@
         },
         methods: {
             showMessage () {
-                util.openNewPage(this, 'message_index');
-                this.$router.push({
-                    name: 'message_index'
-                });
+                // util.openNewPage(this, 'message_index');
+                // this.$router.push({
+                //     name: 'message_index'
+                // });
+                this.$Message.error('功能暂未开发')
             }
         }
     };

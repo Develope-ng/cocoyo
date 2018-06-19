@@ -71,7 +71,6 @@
 
 <script>
     import Echo from 'laravel-echo'
-
     export default {
         data() {
             return {
@@ -126,10 +125,8 @@
             },
             getSocketNotification() {
                 var echo = new Echo({
-                    broadcaster: 'pusher',
-                    key: '65f5c4e6ce56d46ab2c6',
-                    cluster: 'ap1',
-                    encrypted: true,
+                    broadcaster: 'socket.io',
+                    host: window.location.hostname + ':6001',
                     auth: {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest',
@@ -137,8 +134,10 @@
                         }
                     }
                 });
+
                 echo.private('user_room_' + this.$store.state.user.userinfo.id)
-                    .listen('.notification.push', (e) => {
+                    .listen('NotificationPushEvent', (e) => {
+                        console.log(e)
                         this.count = e.count
                     })
             },

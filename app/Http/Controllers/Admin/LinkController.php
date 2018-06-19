@@ -7,6 +7,7 @@ use App\Models\Link;
 use App\Services\FileManager\BaseManager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class LinkController extends Controller
 {
@@ -36,6 +37,9 @@ class LinkController extends Controller
         ]);
 
         Link::create($request->all());
+
+        // 清楚缓存
+        Cache::forget('cocoyo_links');
 
         return $this->noContent();
     }
@@ -85,6 +89,9 @@ class LinkController extends Controller
 
        $link->save();
 
+        // 清楚缓存
+        Cache::forget('cocoyo_links');
+
         return $this->noContent();
     }
 
@@ -98,6 +105,9 @@ class LinkController extends Controller
     public function destroy(Link $link)
     {
        $link->delete();
+
+        // 清楚缓存
+        Cache::forget('cocoyo_links');
 
         return $this->noContent();
     }

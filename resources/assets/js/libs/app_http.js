@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {apiUrl} from '@/config/app'
-import {getToken} from '@/utils/auth';
+import {getToken, removeToken, removeUser} from '@/utils/auth';
 import { Message,Notice } from 'iview';
 
 export const http = axios.create({
@@ -48,6 +48,8 @@ http.interceptors.response.use(
             return Promise.reject(res.message)
         }
         if ([401].indexOf(status) !== -1) {
+            removeToken();
+            removeUser();
             window.location = '/#/login'
         }
 
