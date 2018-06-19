@@ -43,6 +43,5 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-
-window.io = require('socket.io-client');
+window.Pusher = require('pusher-js');
 
