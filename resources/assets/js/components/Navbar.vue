@@ -137,7 +137,6 @@
                         }
                     }
                 });
-                console.log(window.location.hostname)
                 echo.private('user_room_' + this.$store.state.user.userinfo.id)
                     .listen('NotificationPushEvent', (e) => {
                         console.log(e)

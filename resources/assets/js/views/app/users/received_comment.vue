@@ -18,9 +18,6 @@
 <script>
     export default {
         props: ['title', 'name', 'created_diff', 'body', 'read_at', 'slug'],
-        created() {
-            console.log(this.read_at)
-        }
     }
 </script>
 
