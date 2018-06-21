@@ -45,17 +45,23 @@
                         }
                     },
                     {
-                        title: '昵称',
+                        title: '回复人昵称',
                         key: 'user.name',
                         render: (h, params) => {
-                            return params.row.user.name
+                            return h(
+                                'div',
+                                params.row.reply_user.name
+                            )
                         }
                     },
                     {
                         title: '评论时间',
                         key: 'created_at',
                         render: (h, params) => {
-                            return params.row.created_at.created_diff
+                            return h(
+                                'div',
+                                params.row.created_at.created_diff,
+                            )
                         }
                     },
                     {

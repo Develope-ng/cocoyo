@@ -45,14 +45,4 @@ class NotificationPushEvent implements ShouldBroadcast
     {
         return new PrivateChannel('user_room_' . $this->user->id);
     }
-
-    /**
-     * 事件的广播名称。
-     *
-     * @return string
-     */
-    public function broadcastAs()
-    {
-        return 'notification.push';
-    }
 }

@@ -41,10 +41,7 @@
                     },
                     {
                         title: '文章',
-                        key: 'title',
-                        render: (h, params) => {
-                            return params.row.commentable.title
-                        }
+                        key: 'commentable'
                     },
                     {
                         title: '内容',
@@ -61,17 +58,23 @@
                         }
                     },
                     {
-                        title: '昵称',
-                        key: 'name',
+                        title: '评论人昵称',
+                        key: 'reply_user.name',
                         render: (h, params) => {
-                            return params.row.user.name
+                            return h(
+                                'p',
+                                params.row.reply_user.name
+                            )
                         }
                     },
                     {
                         title: '评论时间',
-                        key: 'created_at',
+                        key: 'created_at.created_diff',
                         render: (h, params) => {
-                            return params.row.created_at.created_diff
+                            return h(
+                                'p',
+                                params.row.created_at.created_diff
+                            )
                         }
                     },
                     {

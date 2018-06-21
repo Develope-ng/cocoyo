@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {apiUrl} from '@/config/dashboard'
-import {getToken} from '@/utils/auth';
+import {getToken, removeToken, removeUser} from '@/utils/auth';
 import Cookies from "js-cookie";
 import {Message} from 'iview'
 
@@ -44,11 +44,9 @@ http.interceptors.response.use(
             return Promise.reject(res.message)
         }
         if ([401].indexOf(status) !== -1) {
-            Message.error({
-                content: res.message,
-                duration: 10,
-                closable: true
-            });
+            removeToken();
+            removeUser();
+            window.location = '/#/login'
         }
 
     },
