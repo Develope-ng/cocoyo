@@ -16,6 +16,12 @@ class EventServiceProvider extends ServiceProvider
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             'SocialiteProviders\\QQ\\QqExtendSocialite@handle',
             'SocialiteProviders\\Weibo\\WeiboExtendSocialite@handle',
+        ],
+        \Laravel\Passport\Events\AccessTokenCreated::class => [
+            'App\Listeners\Auth\RevokeOldTokens'
+        ],
+        \Laravel\Passport\Events\RefreshTokenCreated::class => [
+            'App\Listeners\Auth\PruneOldTokens',
         ]
     ];
 
