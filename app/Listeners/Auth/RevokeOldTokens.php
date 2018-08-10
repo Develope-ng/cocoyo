@@ -2,6 +2,7 @@
 
 namespace App\Listeners\Auth;
 
+use Carbon\Carbon;
 use Laravel\Passport\Events\AccessTokenCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
